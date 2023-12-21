@@ -1,16 +1,18 @@
 import { Link } from "react-router-dom"
+// import { deleteTodo } from "../api/deleteTodo"
 
-const Card = ({ todo, deleteHandler }) => {
+const Card = ({ todo, deleteHandler, index }) => {
 
     return (
         <div>
-            <h3>{todo.text}</h3>
-            <button onClick={deleteHandler}>delete</button>
+            <h2>{`Item ${index + 1}`}</h2>
+            <p>{todo.text}</p>
             <Link
                 to={`/${todo._id}`} 
             >
-            edit
+            <button>edit</button>
             </Link>
+            <button onClick={() => deleteHandler(todo._id)}>delete</button>
         </div>
     )
 }

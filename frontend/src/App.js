@@ -7,7 +7,7 @@ const App = () => {
   return (
     <div>
       <BrowserRouter>
-        <h1>Todo List</h1>
+        <h1>To Do List</h1>
         <Navbar />
         <Routes>
           <Route
@@ -15,12 +15,12 @@ const App = () => {
             element={<Home />}
           />
           <Route
-            path='/'
+            path='/addTodo'
             element={<AddTodo />}
           />
           <Route
             // dynamic :id to create custom route
-            path='/'
+            path='/:id'
             element={<EditTodo />}
           />
         </Routes>

@@ -1,7 +1,7 @@
 require("dotenv").config()
 
 const express = require('express')
-const itemRoutes = require('./routes/items')
+const itemRoutes = require('./routes/item')
 const mongoose = require('mongoose')
 const cors = require('cors')
 
@@ -16,4 +16,12 @@ app.use('/todos', itemRoutes)
 mongoose.connect(process.env.MONGODB_URL)
 // LISTEN ON PORT 4000
 // frontend is running on port 3000
+.then(() => {
+    app.listen(4000, () => {
+        console.log('listening on port 4000, connected to database')
+    })
+})
+.catch((error) => {
+    console.log(error)
+})
 
