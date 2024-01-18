@@ -31,6 +31,3 @@ contains react components
 
 # pages
 contains the pages for your react app
-
-### Tips
-work on your backend first, use thunder client to test endpoints 
