@@ -6,12 +6,14 @@ const EditTodo = () => {
 
     const { id } = useParams()
     const [toUpdate, setToUpdate] = useState('')
-    const [userInput, setUserInput] = useState('')
+    const [titleInput, setTitleInput] = useState('')
+    const [descriptionInput, setDescriptionInput] = useState('')
 
     const submitHandler = async () => {
         let obj = {
-            _id: toUpdate._id,
-            text: userInput
+            _id: toUpdate.id,
+            title: titleInput,
+            description: descriptionInput
         }
         updateTodo(obj)
         alert('The item was successfully edited')
@@ -20,24 +22,32 @@ const EditTodo = () => {
     useEffect(() => {
         const fetchTodo = async () => {
             let data = await getTodo(id)
-            setToUpdate(data)
-            setUserInput(data)
+            // console.log(data)
+            setToUpdate({ id: data._id, title: data.title, description: data.description })
+            setTitleInput(data.title)
+            setDescriptionInput(data.description)
         }
         fetchTodo()
     }, [])
     return (
         <div>
-            <h4>{toUpdate.text}</h4>
+            <h3>{toUpdate.title}</h3>
+            <h4>{toUpdate.description}</h4>
             <div>
                 <form onSubmit={submitHandler}>
-                    <label>
-                        <div>Edit:</div>
-                        <input
-                            type="text"
-                            value={userInput.text}
-                            onChange={(e) => setUserInput(e.target.value)}
-                        />
-                    </label>
+                    <label>Edit Title:</label>
+                    <input
+                        type="text"
+                        value={titleInput}
+                        onChange={(e) => setTitleInput(e.target.value)}
+                    />
+                    <br></br>
+                    <label>Edit Description:</label>
+                    <input
+                        type="text"
+                        value={descriptionInput}
+                        onChange={(e) => setDescriptionInput(e.target.value)}
+                    />
                     <input type="submit" />
                 </form>
             </div>

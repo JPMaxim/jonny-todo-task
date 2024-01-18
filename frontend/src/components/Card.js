@@ -5,12 +5,20 @@ const Card = ({ todo, deleteHandler, index }) => {
 
     return (
         <div>
-            <h2>{`Item ${index + 1}`}</h2>
-            <p>{todo.text}</p>
+            {index < 9 
+                ? <div>
+                    <h2>{`0${index + 1} ${todo.title}`}</h2>
+                    <h3>{todo.description}</h3>
+                </div> 
+                : <div>
+                    <h2>{`${index + 1} ${todo.title}`}</h2>
+                    <h3>{todo.description}</h3>
+                </div>}
+            
             <Link
-                to={`/${todo._id}`} 
+                to={`/${todo._id}`}
             >
-            <button>edit</button>
+                <button>edit</button>
             </Link>
             <button onClick={() => deleteHandler(todo._id)}>delete</button>
         </div>

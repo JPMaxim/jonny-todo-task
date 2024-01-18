@@ -1,13 +1,14 @@
 import { useState } from "react"
-import {addTodo} from "../api/addTodo"
+import { addTodo } from "../api/addTodo"
 
 const AddTodo = () => {
-    const [userInput, setUserInput] = useState("")
+    const [titleInput, setTitleInput] = useState("")
+    const [descriptionInput, setDescriptionInput] = useState("")
 
     const handleSubmit = async (e) => {
-        e.preventDefault()
+        // e.preventDefault()
         // what function will run?
-        let response = await addTodo(userInput)
+        let response = await addTodo(titleInput, descriptionInput)
         // console.log(response)
         alert("Successfully added Item")
     }
@@ -18,12 +19,20 @@ const AddTodo = () => {
                 add item
             </h1>
             <form onSubmit={handleSubmit}>
-                <input 
-                type="text"
-                    value={userInput}
-                    onChange={(e) => setUserInput(e.target.value)}
+                <label>Enter Task Title</label>
+                <input
+                    type="text"
+                    value={titleInput}
+                    onChange={(e) => setTitleInput(e.target.value)}
                 />
-                <button type="submit">submit</button>
+                <br></br>
+                <label>Enter Task Description</label>
+                <input
+                    type="text"
+                    value={descriptionInput}
+                    onChange={(e) => setDescriptionInput(e.target.value)}
+                />
+                <input type="submit" value="Submit" />
             </form>
         </div>
     )

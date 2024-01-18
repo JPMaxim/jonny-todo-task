@@ -5,9 +5,15 @@ const mongoose = require('mongoose')
 const Schema = mongoose.Schema
 // what the data will look like
 const todoSchema = new Schema({
-    text: {
+    title: {
         type: String,
-        required: true
+        required: true,
+        default: 'error: title not found'
+    },
+    description: {
+        type: String,
+        required: true,
+        default: 'error: description not found'
     }
 })
 

@@ -23,10 +23,11 @@ const getTodo = async (req, res) => {
 
 const createTodo = async (req,res) => {
     // get the text from the req.params
-    const { text } = req.params
+    const { tit, dsc } = req.body
     // create new todo object with model
     const todoObject = new Todo({
-        text
+        title: tit,
+        description: dsc
     })
     // await for it to be saved
     const newTodo = await todoObject.save()
@@ -36,12 +37,13 @@ const createTodo = async (req,res) => {
 
 const editTodo = async (req, res,) => {
     // get id from ':id' param from the route
-    const  id = req.params.id
-    // get text from ':text' param from the route
-    const  text = req.params.text
-    console.log(req.params)
+    const id = req.params.id
+    // get title and description params from the route
+    const title = req.params.title
+    const description = req.params.description
+    // console.log(req.params)
     // use mongoose model method findByIdAndUpdate
-    const item = await Todo.updateOne({"_id": id}, {$set:{text: text}})
+    const item = await Todo.updateOne({"_id": id}, {$set:{title: title, description: description}})
     // other method: .findByIdAndUpdate(id, {text: req.params.text})
 
     res.status(200).json(item)

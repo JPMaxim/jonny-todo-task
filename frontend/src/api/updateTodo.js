@@ -2,7 +2,7 @@ const API_URL = `http://localhost:4000`
 
 export const updateTodo = async (todo) => {
     
-    const response = await fetch(`${API_URL}/todos/item/${todo._id}/${todo.text}`, {
+    const response = await fetch(`${API_URL}/todos/item/${todo._id}/${todo.title}/${todo.description}`, {
         // what method?
         method: 'PATCH',
         // type of content?
